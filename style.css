@@ -81,15 +81,16 @@ main #input #button_clear {
   position: absolute;
   top: 16px;
   right: 24px;
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
+  height: 48px;
+  width: 48px;
+  border-radius: 8px;
+  text-align: center;
 }
 main #input #button_clear::after {
   font-family: "Material Symbols Rounded";
   content: "\e5cd";
   font-size: 32px;
-  line-height: 1;
+  line-height: 48px;
   color: #98989E;
 }
 main #input #button_clear:hover::after {
