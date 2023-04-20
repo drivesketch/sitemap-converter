@@ -2,7 +2,8 @@
 {
 const area_input = document.getElementById('area_input');
 const area_output = document.getElementById('area_output');
-const button_clear = document.getElementById('button_clear');
+const button_clear_input = document.getElementById('button_clear_input');
+const button_clear_output = document.getElementById('button_clear_output');
 const button_convert = document.getElementById('button_convert');
 const button_copy = document.getElementById('button_copy');
 const output = document.getElementById('output');
@@ -59,8 +60,11 @@ button_convert.addEventListener('click', () => {
     area_output.value = text_output;
 });
 
-button_clear.addEventListener('click', () => {
+button_clear_input.addEventListener('click', () => {
     area_input.value = '';
+});
+button_clear_output.addEventListener('click', () => {
+    area_output.value = '';
 });
 
 button_copy.addEventListener('click', () => {

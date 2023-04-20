@@ -75,7 +75,7 @@ main #input #area_input::-moz-placeholder {
 main #input #area_input::placeholder {
   color: #98989E;
 }
-main #input #button_clear {
+main #input #button_clear_input {
   border: 0;
   background-color: rgba(255, 255, 255, 0.7);
   position: absolute;
@@ -86,14 +86,14 @@ main #input #button_clear {
   border-radius: 8px;
   text-align: center;
 }
-main #input #button_clear::after {
+main #input #button_clear_input::after {
   font-family: "Material Symbols Rounded";
   content: "\e5cd";
   font-size: 32px;
   line-height: 48px;
   color: #98989E;
 }
-main #input #button_clear:hover::after {
+main #input #button_clear_input:hover::after {
   color: #E6A8A0;
 }
 main #input #button_convert {
@@ -137,6 +137,27 @@ main #output #area_output {
 }
 main #output #area_output:focus {
   outline: 2px solid #EB503C;
+}
+main #output #button_clear_output {
+  border: 0;
+  background-color: rgba(117, 117, 117, 0);
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  height: 48px;
+  width: 48px;
+  border-radius: 8px;
+  text-align: center;
+}
+main #output #button_clear_output::after {
+  font-family: "Material Symbols Rounded";
+  content: "\e5cd";
+  font-size: 32px;
+  line-height: 48px;
+  color: #98989E;
+}
+main #output #button_clear_output:hover::after {
+  color: #E6A8A0;
 }
 main #output #button_copy {
   border: 0;

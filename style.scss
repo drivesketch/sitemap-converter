@@ -70,7 +70,7 @@ main{
                 color: #98989E;
             }
         }
-        #button_clear {
+        #button_clear_input {
             border: 0;
             background-color: rgba(255, 255, 255, .7);
             position: absolute;
@@ -132,6 +132,27 @@ main{
             &:focus {
                 outline: 2px solid $aco_orange;
             }}
+        #button_clear_output {
+            border: 0;
+            background-color: rgba(117, 117, 117, 0);
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            height: 48px;
+            width: 48px;
+            border-radius: 8px;
+            text-align: center;
+            &::after {
+                font-family: "Material Symbols Rounded";
+                content: "\e5cd";
+                font-size: 32px;
+                line-height: 48px; 
+                color: #98989E;
+            }
+            &:hover::after {
+                color: #E6A8A0;
+            }
+        }
         #button_copy {
             border: 0;
             background-color: rgba(244, 244, 244, .7);
