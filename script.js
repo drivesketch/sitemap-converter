@@ -23,17 +23,20 @@ button_convert.addEventListener('click', () => {
     // 1行ずつ処理する
     // title, url, depthそれぞれの行ごとの配列を作る
     for (let i = 0; i < num_pages; i++ ){
-        // カンマごとに配列に格納する
-        // ダブルクオーテーションを取る
+        // ダブルクオーテーションを取り、カンマごとに配列に格納する
         const array_byComma = array_byLine[i].replace(/^\"(.*)\"$/g,'$1').split('","'); 
+
+        // url, titleを取り出し、url_tabbedを作る
         const [url, title] = array_byComma;
         const url_tabbed = url.replace(/([^\/])\/([^(\/|\n\$)])/g,'$1\/\t$2');
+
+        // このurlの階層の深さを記録する
         const depth = url_tabbed.split('\t').length;
 
         // 階層の深さが最大を超える場合、最大を上書きする
         depth > depth_max ? depth_max = depth : null;
 
-        // 配列に追加する
+        // それぞれを配列に追加する
         array_title.push(title);
         array_url.push(url + '\t' + url_tabbed);
         array_depth.push(depth);
