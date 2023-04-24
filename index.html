@@ -16,9 +16,13 @@
 <main>
   <div class="contentsWapper">
     <div id="input">
-      <textarea id="area_input" placeholder="Paste here the CSV exported from Integrity Plus." autofocus></textarea>
-      <button aria-label="Clear" id="button_clear_input"></button>
-      <button aria-label="Conver" id="button_convert"></button>
+      <!-- <textarea id="area_input" placeholder="Paste here the CSV exported from Integrity Plus." autofocus></textarea> -->
+      <div>Drag & drop the CSV file here<br>or</div>
+      <button aria-label="Input File" id="button_input">Select file</button>
+      <div id="filename"></div>
+      <input type="file" id="button_input_0" accept=".csv">
+      <!-- <button aria-label="Clear" id="button_clear_input"></button> -->
+      <button aria-label="Convert" id="button_convert"></button>
     </div>
     <div id="output">
       <textarea id="area_output" readonly></textarea>
