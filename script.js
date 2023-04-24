@@ -1,8 +1,8 @@
 'use strict'
 {
-const area_input = document.getElementById('area_input');
+// const area_input = document.getElementById('area_input');
 const area_output = document.getElementById('area_output');
-// const button_clear_input = document.getElementById('button_clear_input');
+const button_clear_input = document.getElementById('button_clear_input');
 const button_clear_output = document.getElementById('button_clear_output');
 const button_convert = document.getElementById('button_convert');
 const button_copy = document.getElementById('button_copy');
@@ -14,42 +14,56 @@ const button_input_0 = document.getElementById('button_input_0');
 
 const filename = document.getElementById('filename');
 
-button_input.addEventListener('click', () => {
-    button_input_0.click();
-});
+const showFilename = (files) => {
+    const file = files[0];
+    filename.textContent = file.name;
+    button_clear_input.classList.remove('hidden');
+}
+const removeFilename = () => {
+    filename.textContent = '';
+    button_clear_input.classList.add('hidden');
+}
 
-button_input_0.addEventListener('change', e => {
-    const files = e.target.files;
+const toggleFilename = (files) => {
     if (files.length > 0) {
-        const file = files[0];
-        filename.textContent = file.name;
+        showFilename(files);
     } else {
-        filename.textContent = '';
+        removeFilename();
     }
-    button_input.blur();
-});
+}
 
+// Drag & Dropでファイル投入
 input.addEventListener('dragover', e => {
     e.preventDefault();
     input.classList.add('focus');
 });
 input.addEventListener('dragleave', e => {
     e.preventDefault();
-    console.log('dragleave!');
     input.classList.remove('focus');
 });
 input.addEventListener('drop', e => {
     e.preventDefault();
     const files = e.dataTransfer.files;
     button_input_0.files = files;
-    if (files.length > 0) {
-        const file = files[0];
-        filename.textContent = file.name;
-    } else {
-        filename.textContent = '';
-    }
+    toggleFilename(files);
     input.classList.remove('focus');
 });
+
+// ボタンからファイル投入
+button_input.addEventListener('click', () => {
+    button_input_0.click();
+});
+button_input_0.addEventListener('change', e => {
+    const files = e.target.files;
+    toggleFilename(files);
+    button_input.blur();
+});
+
+// ファイル削除
+button_clear_input.addEventListener('click', () => {
+    button_input_0.value = '';
+    removeFilename();
+})
 
 button_convert.addEventListener('click', () => {
     const file = button_input_0.files[0];
