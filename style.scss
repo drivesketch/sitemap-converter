@@ -10,6 +10,9 @@ $aco_black: #282836;
 button:focus {
     outline: 2px solid $aco_orange;
 }
+.hidden {
+    display: none;
+}
 body {
     font-family: "SF Pro";
     padding: 0;
@@ -25,7 +28,7 @@ header, main, footer {
     width: 100%;
 }
 .contentsWapper {
-    max-width: 1280px;
+    max-width: 800px;
     margin: 0 auto;
 }
 header {
@@ -41,21 +44,24 @@ header {
     }
 }
 main{
-    padding: 80px 0;
-    min-height: calc(100vh - 177px);
+    padding: 32px 0;
+    min-height: calc(100vh - 180px);
     .contentsWapper {
         margin: 0px auto;
         height: 100%;
         display: flex;
+        flex-direction: column;
         gap: 40px;
     } 
     
     #input { 
-        height: calc(100vh - 400px);
+        // height: calc(100vh - 400px);
+        height: auto;
+        padding: 32px 0;
         box-shadow: 0 0 13px 0 rgba(117,117,117,.37);
         border-radius: 8px;
         background-color: #F4F4F4;
-        flex: 1;
+        // flex: 1;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -69,7 +75,11 @@ main{
             color: #706D65;
             text-align: center;
         }
-
+        #filename_wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+        }
         #button {
             &_input {
                 border: 1px solid #D6D3D0;
@@ -100,27 +110,24 @@ main{
                     display: none;
                 }
             }
-            // &_clear_input {
-            //     border: 0;
-            //     background-color: rgba(255, 255, 255, .7);
-            //     position: absolute;
-            //     top: 16px;
-            //     right: 24px;
-            //     height: 48px;
-            //     width: 48px;
-            //     border-radius: 8px;
-            //     text-align: center;
-            //     &::after {
-            //         font-family: "Material Symbols Rounded";
-            //         content: "\e5cd";
-            //         font-size: 32px;
-            //         line-height: 48px; 
-            //         color: #98989E;
-            //     }
-            //     &:hover::after {
-            //         color: #E6A8A0;
-            //     }
-            // }
+            &_clear_input {
+                border: 0;
+                background-color: rgba(255, 255, 255, 0);
+                // display: flex;
+                // justify-content: center;
+                // align-items: center;
+                height: 25.6px;
+                &::after {
+                    font-family: "Material Symbols Rounded";
+                    content: "\e872";
+                    font-size: 20px;
+                    line-height: 25.6px; 
+                    color: #98989E;
+                }
+                &:hover::after {
+                    color: #E6A8A0;
+                }
+            }
             &_convert {
                 border: 0;
                 border-radius: 40px;
@@ -128,8 +135,8 @@ main{
                 width: 80px;
                 height: 80px;
                 position: absolute;
-                right: -60px;
-                top: calc(50% - 40px);
+                bottom: -60px;
+                left: calc(50% - 40px);
                 box-shadow: 0px 0px 13px rgba(235, 80, 60, 0.37);
                 z-index: 1;
                 &:focus {
@@ -137,11 +144,10 @@ main{
                 }
                 &::after {
                     font-family: "Material Symbols Rounded";
-                    content: "\e5e1";
+                    content: "\ead0";
                     font-size: 40px;
                     line-height: 80px;
                     position: relative;
-                    left: 3px;
                     color: #fff;
                 }
                 &:hover {
@@ -152,8 +158,9 @@ main{
         
     }
     #output{
-        flex: 1;
+        // flex: 1;
         position: relative;
+        height: 400px;
         #area_output {
             height: 100%;
             width: 100%;

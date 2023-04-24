@@ -9,6 +9,10 @@ button:focus {
   outline: 2px solid #EB503C;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   font-family: "SF Pro";
   padding: 0;
@@ -25,7 +29,7 @@ header, main, footer {
 }
 
 .contentsWapper {
-  max-width: 1280px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -43,21 +47,22 @@ header h1 {
 }
 
 main {
-  padding: 80px 0;
-  min-height: calc(100vh - 177px);
+  padding: 32px 0;
+  min-height: calc(100vh - 180px);
 }
 main .contentsWapper {
   margin: 0px auto;
   height: 100%;
   display: flex;
+  flex-direction: column;
   gap: 40px;
 }
 main #input {
-  height: calc(100vh - 400px);
+  height: auto;
+  padding: 32px 0;
   box-shadow: 0 0 13px 0 rgba(117, 117, 117, 0.37);
   border-radius: 8px;
   background-color: #F4F4F4;
-  flex: 1;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -71,6 +76,11 @@ main #input.focus {
 main #input div {
   color: #706D65;
   text-align: center;
+}
+main #input #filename_wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
 }
 main #input #button_input {
   border: 1px solid #D6D3D0;
@@ -98,6 +108,21 @@ main #input #button_input::before {
 main #input #button_input_0 {
   display: none;
 }
+main #input #button_clear_input {
+  border: 0;
+  background-color: rgba(255, 255, 255, 0);
+  height: 25.6px;
+}
+main #input #button_clear_input::after {
+  font-family: "Material Symbols Rounded";
+  content: "\e872";
+  font-size: 20px;
+  line-height: 25.6px;
+  color: #98989E;
+}
+main #input #button_clear_input:hover::after {
+  color: #E6A8A0;
+}
 main #input #button_convert {
   border: 0;
   border-radius: 40px;
@@ -105,8 +130,8 @@ main #input #button_convert {
   width: 80px;
   height: 80px;
   position: absolute;
-  right: -60px;
-  top: calc(50% - 40px);
+  bottom: -60px;
+  left: calc(50% - 40px);
   box-shadow: 0px 0px 13px rgba(235, 80, 60, 0.37);
   z-index: 1;
 }
@@ -115,19 +140,18 @@ main #input #button_convert:focus {
 }
 main #input #button_convert::after {
   font-family: "Material Symbols Rounded";
-  content: "\e5e1";
+  content: "\ead0";
   font-size: 40px;
   line-height: 80px;
   position: relative;
-  left: 3px;
   color: #fff;
 }
 main #input #button_convert:hover {
   box-shadow: 0px 0px 14px rgba(164, 58, 44, 0.74);
 }
 main #output {
-  flex: 1;
   position: relative;
+  height: 400px;
 }
 main #output #area_output {
   height: 100%;
