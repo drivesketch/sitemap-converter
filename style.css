@@ -5,6 +5,10 @@
   font-size: 16px;
 }
 
+button:focus {
+  outline: 2px solid #EB503C;
+}
+
 body {
   font-family: "SF Pro";
   padding: 0;
@@ -52,49 +56,47 @@ main #input {
   height: calc(100vh - 400px);
   box-shadow: 0 0 13px 0 rgba(117, 117, 117, 0.37);
   border-radius: 8px;
+  background-color: #F4F4F4;
   flex: 1;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
-main #input #area_input {
-  height: 100%;
-  width: 100%;
-  background: #FDFDFD;
-  border: 0;
-  border-radius: 8px;
-  padding: 16px 24px;
-  background: #fff;
-  color: #4D4D58;
-  resize: none;
+main #input.focus {
+  border: 2px solid #EB503C;
 }
-main #input #area_input:focus {
-  outline: 2px solid #EB503C;
-}
-main #input #area_input::-moz-placeholder {
-  color: #98989E;
-}
-main #input #area_input::placeholder {
-  color: #98989E;
-}
-main #input #button_clear {
-  border: 0;
-  background-color: rgba(255, 255, 255, 0.7);
-  position: absolute;
-  top: 16px;
-  right: 24px;
-  height: 48px;
-  width: 48px;
-  border-radius: 8px;
+main #input div {
+  color: #706D65;
   text-align: center;
 }
-main #input #button_clear::after {
-  font-family: "Material Symbols Rounded";
-  content: "\e5cd";
-  font-size: 32px;
-  line-height: 48px;
-  color: #98989E;
+main #input #button_input {
+  border: 1px solid #D6D3D0;
+  color: #23221E;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
 }
-main #input #button_clear:hover::after {
-  color: #E6A8A0;
+main #input #button_input:hover {
+  color: #EB503C;
+}
+main #input #button_input::before {
+  font-family: "Material Symbols Rounded";
+  content: "\e2c8";
+  font-size: 16px;
+  line-height: 24px;
+}
+main #input #button_input_0 {
+  display: none;
 }
 main #input #button_convert {
   border: 0;
@@ -107,6 +109,9 @@ main #input #button_convert {
   top: calc(50% - 40px);
   box-shadow: 0px 0px 13px rgba(235, 80, 60, 0.37);
   z-index: 1;
+}
+main #input #button_convert:focus {
+  outline: 2px solid #282836;
 }
 main #input #button_convert::after {
   font-family: "Material Symbols Rounded";
@@ -128,7 +133,7 @@ main #output #area_output {
   height: 100%;
   width: 100%;
   padding: 16px 24px;
-  background-color: #F4F4F4;
+  background-color: #FFF;
   border: 2px solid #DCDCDC;
   box-shadow: 0px 0px 13px rgba(117, 117, 117, 0.37);
   border-radius: 8px;
@@ -138,9 +143,30 @@ main #output #area_output {
 main #output #area_output:focus {
   outline: 2px solid #EB503C;
 }
+main #output #button_clear_output {
+  border: 0;
+  background-color: rgba(117, 117, 117, 0);
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  height: 48px;
+  width: 48px;
+  border-radius: 8px;
+  text-align: center;
+}
+main #output #button_clear_output::after {
+  font-family: "Material Symbols Rounded";
+  content: "\e5cd";
+  font-size: 32px;
+  line-height: 48px;
+  color: #98989E;
+}
+main #output #button_clear_output:hover::after {
+  color: #E6A8A0;
+}
 main #output #button_copy {
   border: 0;
-  background-color: rgba(244, 244, 244, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   position: absolute;
   bottom: 16px;
   right: 24px;

@@ -2,30 +2,121 @@
 {
 const area_input = document.getElementById('area_input');
 const area_output = document.getElementById('area_output');
-const button_clear = document.getElementById('button_clear');
+// const button_clear_input = document.getElementById('button_clear_input');
+const button_clear_output = document.getElementById('button_clear_output');
 const button_convert = document.getElementById('button_convert');
 const button_copy = document.getElementById('button_copy');
 const output = document.getElementById('output');
+const input = document.getElementById('input');
 
-button_convert.addEventListener('click', () => {
-    const text_input = area_input.value.trim(); // 末尾の余分な改行を除去する
-    const array_byLine = text_input.split('\n'); // 1行ずつ配列に格納する
-    array_byLine.shift(); // ヘッダ行の分を削除
-    array_byLine.sort();  // ソートする（＝URL順になる）
-    let text_output = `URL\tTitle\tRoot\tL2\tL3\tL4\tL5\tL6`; //新ヘッダ行
-    for (let i = 0; i < array_byLine.length; i++ ){
-        array_byLine[i] = array_byLine[i].replace(/^\"(.*)\"$/g,'$1'); //最初と最後のクォートを消す
-        const array_byComma = array_byLine[i].split('\",\"') // "," の塊ごとに区切って配列化し、[URL, Title, xxx, xxx, ...] を作る
-        array_byComma.splice(2, array_byComma.length - 2); //URLとTitle以外を削除し、[URL, Title] だけにする
-        array_byComma.push(array_byComma[0]); // URLを複製して末尾に追加
-        array_byComma[2] = array_byComma[2].replace(/([^\/])\/([^(\/|\n\$)])/g,'$1\/\t$2');  //末尾の方のURLに、スラッシュごとにtab文字を挿入
-        text_output += `\n${array_byComma[0]}\t${array_byComma[1]}\t${array_byComma[2]}` //タブ区切りテキスト化する
-    }
-    area_output.value = text_output;
+const button_input = document.getElementById('button_input');
+const button_input_0 = document.getElementById('button_input_0');
+
+const filename = document.getElementById('filename');
+
+button_input.addEventListener('click', () => {
+    button_input_0.click();
 });
 
-button_clear.addEventListener('click', () => {
-    area_input.value = '';
+button_input_0.addEventListener('change', e => {
+    const files = e.target.files;
+    if (files.length > 0) {
+        const file = files[0];
+        filename.textContent = file.name;
+    } else {
+        filename.textContent = '';
+    }
+    button_input.blur();
+});
+
+input.addEventListener('dragover', e => {
+    e.preventDefault();
+    input.classList.add('focus');
+});
+input.addEventListener('dragleave', e => {
+    e.preventDefault();
+    console.log('dragleave!');
+    input.classList.remove('focus');
+});
+input.addEventListener('drop', e => {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+    button_input_0.files = files;
+    if (files.length > 0) {
+        const file = files[0];
+        filename.textContent = file.name;
+    } else {
+        filename.textContent = '';
+    }
+    input.classList.remove('focus');
+});
+
+button_convert.addEventListener('click', () => {
+    const file = button_input_0.files[0];
+    const reader = new FileReader();
+    reader.onload =  () => {
+        const content = reader.result.trim();
+
+        // 1行ずつ配列に格納する
+        const array_byLine = content.split('\n'); 
+        // ヘッダ行の分を削除
+        array_byLine.shift();
+        // ソートする（＝URL順になる）
+        array_byLine.sort(); 
+
+        const num_pages = array_byLine.length;
+        const array_title = [];
+        const array_url = [];
+        const array_depth = [];
+        let depth_max = 0;
+
+        // 1行ずつ処理する
+        // title, url, depthそれぞれの行ごとの配列を作る
+        for (let i = 0; i < num_pages; i++ ){
+            // ダブルクオーテーションを取り、カンマごとに配列に格納する
+            const array_byComma = array_byLine[i].replace(/^\"(.*)\"$/g,'$1').split('","'); 
+
+            // url, titleを取り出し、url_tabbedを作る
+            const [url, title] = array_byComma;
+            const url_tabbed = url.replace(/([^\/])\/([^(\/|\n\$)])/g,'$1\/\t$2');
+
+            // このurlの階層の深さを記録する
+            const depth = url_tabbed.split('\t').length;
+
+            // 階層の深さが最大を超える場合、最大を上書きする
+            depth > depth_max ? depth_max = depth : null;
+
+            // それぞれを配列に追加する
+            array_title.push(title);
+            array_url.push(url + '\t' + url_tabbed);
+            array_depth.push(depth);
+        }
+
+        // ヘッダ行を作る
+        // 最大深度に応じて Root, L2, L3,... の数字が増える
+        let header_depth = '';
+        for (let i = 0; i < depth_max; i++){
+            header_depth += (i === 0) ? 'Root' : `\tL${i+1}`;
+        }
+        let text_output = `${header_depth}\tURL\t${header_depth}`;
+
+        // 出力文を作る
+        for (let i = 0; i < num_pages; i++ ){
+            // 階層の深さに合わせてTitleのインデントを調整する
+            const num_tabs_before = array_depth[i] - 1;
+            const tabs_before = '\t'.repeat(num_tabs_before);
+            const num_tabs_after = depth_max - array_depth[i] + 1;
+            const tabs_after = '\t'.repeat(num_tabs_after);
+
+            text_output += `\n${tabs_before}${array_title[i]}${tabs_after}${array_url[i]}`;
+        }
+        area_output.value = text_output;
+    }
+    reader.readAsText(file, 'UTF-8');
+});
+
+button_clear_output.addEventListener('click', () => {
+    area_output.value = '';
 });
 
 button_copy.addEventListener('click', () => {
