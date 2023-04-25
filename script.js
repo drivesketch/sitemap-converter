@@ -1,6 +1,5 @@
 'use strict'
 {
-// const area_input = document.getElementById('area_input');
 const area_output = document.getElementById('area_output');
 const button_clear_input = document.getElementById('button_clear_input');
 const button_clear_output = document.getElementById('button_clear_output');
@@ -39,7 +38,7 @@ const showMessage = (message) => {
     output.appendChild(div_message);
     setTimeout(() => {
         div_message.remove();
-    }, 3000);
+    }, 2000);
 }
 
 // Drag & Dropでファイル投入

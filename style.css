@@ -48,7 +48,7 @@ header h1 {
 
 main {
   padding: 32px 0;
-  min-height: calc(100vh - 180px);
+  min-height: calc(100vh - 168px);
 }
 main .contentsWapper {
   margin: 0px auto;
@@ -225,12 +225,13 @@ main #output #message {
 }
 
 footer {
-  padding: 48px 0;
+  padding: 32px 0;
+  height: 96px;
   background-color: #282836;
 }
 footer .contentsWapper {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   gap: 16px;
 }
@@ -241,8 +242,8 @@ footer a:hover {
   opacity: 0.6;
 }
 footer .footer_credit {
-  text-transform: uppercase;
   color: #FDFDFD;
   opacity: 0.8;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 32px;
 }/*# sourceMappingURL=style.css.map */
