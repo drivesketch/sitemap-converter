@@ -86,30 +86,31 @@ main{
         }
         #button {
             &_input {
-                border: 1px solid #D6D3D0;
-                color: #23221E;
-                font-size: 16px;
-                font-weight: 600;
-                background-color: $white;
-                border-radius: 4px;
-                padding: 8px 16px;
-                display: flex;
-                flex-direction: row;
-                gap: 8px;
-                justify-content: center;
-                align-items: center;
-                &:hover {
-                    color: $aco_orange;
-                }
-                &::before {
-                    font-family: "Material Symbols Rounded";
-                    content: "\e2c8";
+                &_customized {
+                    border: 1px solid #D6D3D0;
+                    color: #23221E;
                     font-size: 16px;
-                    line-height: 24px;
-                    // margin-right: 8px;
+                    font-weight: 600;
+                    background-color: $white;
+                    border-radius: 4px;
+                    padding: 8px 16px;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 8px;
+                    justify-content: center;
+                    align-items: center;
+                    &:hover {
+                        color: $aco_orange;
+                    }
+                    &::before {
+                        font-family: "Material Symbols Rounded";
+                        content: "\e2c8";
+                        font-size: 16px;
+                        line-height: 24px;
+                        // margin-right: 8px;
+                    }
                 }
-
-                &_0 {
+                &_original {
                     display: none;
                 }
             }

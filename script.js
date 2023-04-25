@@ -8,8 +8,8 @@ const button_copy = document.getElementById('button_copy');
 const output = document.getElementById('output');
 const input = document.getElementById('input');
 
-const button_input = document.getElementById('button_input');
-const button_input_0 = document.getElementById('button_input_0');
+const button_input_customized = document.getElementById('button_input_customized');
+const button_input_original = document.getElementById('button_input_original');
 
 const filename = document.getElementById('filename');
 
@@ -53,29 +53,29 @@ input.addEventListener('dragleave', e => {
 input.addEventListener('drop', e => {
     e.preventDefault();
     const files = e.dataTransfer.files;
-    button_input_0.files = files;
+    button_input_original.files = files;
     toggleFilename(files);
     input.classList.remove('focus');
 });
 
 // ボタンからファイル投入
-button_input.addEventListener('click', () => {
-    button_input_0.click();
+button_input_customized.addEventListener('click', () => {
+    button_input_original.click();
 });
-button_input_0.addEventListener('change', e => {
+button_input_original.addEventListener('change', e => {
     const files = e.target.files;
     toggleFilename(files);
-    button_input.blur();
+    button_input_customized.blur();
 });
 
 // ファイル削除
 button_clear_input.addEventListener('click', () => {
-    button_input_0.value = '';
+    button_input_original.value = '';
     removeFilename();
 })
 
 button_convert.addEventListener('click', () => {
-    const file = button_input_0.files[0];
+    const file = button_input_original.files[0];
 
     // ファイルがない場合エラー
     if (file === undefined){
