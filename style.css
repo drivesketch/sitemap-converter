@@ -156,7 +156,7 @@ main #output {
 main #output #area_output {
   height: 100%;
   width: 100%;
-  padding: 16px 24px;
+  padding: 32px;
   background-color: #FFF;
   border: 2px solid #DCDCDC;
   box-shadow: 0px 0px 13px rgba(117, 117, 117, 0.37);
@@ -212,10 +212,12 @@ main #output #button_copy:hover {
 main #output #message {
   padding: 12px 40px;
   color: #282836;
-  width: 160px;
+  min-width: 160px;
+  max-width: 80%;
   position: absolute;
-  bottom: 24px;
-  left: calc(50% - 80px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #FDFDFD;
   box-shadow: 0px 0px 13px rgba(117, 117, 117, 0.37);
   border-radius: 8px;

@@ -32,6 +32,16 @@ const toggleFilename = (files) => {
     }
 }
 
+const showMessage = (message) => {
+    const div_message = document.createElement('div');
+    div_message.id = 'message';
+    div_message.textContent = message;
+    output.appendChild(div_message);
+    setTimeout(() => {
+        div_message.remove();
+    }, 3000);
+}
+
 // Drag & Dropでファイル投入
 input.addEventListener('dragover', e => {
     e.preventDefault();
@@ -67,9 +77,19 @@ button_clear_input.addEventListener('click', () => {
 
 button_convert.addEventListener('click', () => {
     const file = button_input_0.files[0];
+    if (file === undefined){
+        showMessage('ファイルが選択されていません。');
+        return;
+    }
     const reader = new FileReader();
     reader.onload =  () => {
         const content = reader.result.trim();
+
+        // 想定したCSVファイル以外が投入された場合、エラーにする
+        if( content.indexOf('"url","Title"')!== 0){
+            showMessage('Integrity Plusから出力したCSVファイルではないため、処理できません。');
+            return;
+        } 
 
         // 1行ずつ配列に格納する
         const array_byLine = content.split('\n'); 
@@ -125,6 +145,7 @@ button_convert.addEventListener('click', () => {
             text_output += `\n${tabs_before}${array_title[i]}${tabs_after}${array_url[i]}`;
         }
         area_output.value = text_output;
+        
     }
     reader.readAsText(file, 'UTF-8');
 });
@@ -133,15 +154,10 @@ button_clear_output.addEventListener('click', () => {
     area_output.value = '';
 });
 
+
 button_copy.addEventListener('click', () => {
     navigator.clipboard.writeText(area_output.value);
-    const div_message = document.createElement('div');
-    div_message.id = 'message';
-    div_message.textContent = 'Copied!';
-    output.appendChild(div_message);
-    setTimeout(() => {
-        div_message.remove();
-    }, 1000);
+    showMessage('Copied!');
 });
 
 }//use strict
