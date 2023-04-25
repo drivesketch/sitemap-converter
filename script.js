@@ -76,6 +76,8 @@ button_clear_input.addEventListener('click', () => {
 
 button_convert.addEventListener('click', () => {
     const file = button_input_0.files[0];
+
+    // ファイルがない場合エラー
     if (file === undefined){
         showMessage('ファイルが選択されていません。');
         return;
@@ -156,7 +158,7 @@ button_clear_output.addEventListener('click', () => {
 
 button_copy.addEventListener('click', () => {
     navigator.clipboard.writeText(area_output.value);
-    showMessage('Copied!');
+    showMessage('コピーしました');
 });
 
 }//use strict
