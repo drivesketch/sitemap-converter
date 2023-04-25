@@ -5,22 +5,20 @@
   font-size: 16px;
 }
 
-button:focus {
-  outline: 2px solid #EB503C;
-}
-
 .hidden {
   display: none;
 }
 
 body {
-  font-family: "SF Pro";
   padding: 0;
   margin: 0;
 }
 
 button:hover {
   cursor: pointer;
+}
+button:focus {
+  outline: 2px solid #EB503C;
 }
 
 header, main, footer {
@@ -35,7 +33,7 @@ header, main, footer {
 
 header {
   padding: 24px 0;
-  border-bottom: 1px solid #DCDCDC;
+  border-bottom: 1px solid #D6D3D0;
 }
 header h1 {
   font-size: 24px;
@@ -62,7 +60,7 @@ main #input {
   padding: 32px 0;
   box-shadow: 0 0 13px 0 rgba(117, 117, 117, 0.37);
   border-radius: 8px;
-  background-color: #F4F4F4;
+  background-color: #F8F7F6;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -86,8 +84,8 @@ main #input #button_input {
   border: 1px solid #D6D3D0;
   color: #23221E;
   font-size: 16px;
-  font-weight: bold;
-  background-color: #fff;
+  font-weight: 600;
+  background-color: #FFFFFF;
   border-radius: 4px;
   padding: 8px 16px;
   display: flex;
@@ -110,6 +108,7 @@ main #input #button_input_0 {
 }
 main #input #button_clear_input {
   border: 0;
+  border-radius: 4px;
   background-color: rgba(255, 255, 255, 0);
   height: 25.6px;
 }
@@ -118,7 +117,7 @@ main #input #button_clear_input::after {
   content: "\e872";
   font-size: 20px;
   line-height: 25.6px;
-  color: #98989E;
+  color: #282836;
 }
 main #input #button_clear_input:hover::after {
   color: #E6A8A0;
@@ -126,17 +125,14 @@ main #input #button_clear_input:hover::after {
 main #input #button_convert {
   border: 0;
   border-radius: 40px;
-  background-color: #EB503C;
+  background-color: #706D65;
   width: 80px;
   height: 80px;
   position: absolute;
   bottom: -60px;
   left: calc(50% - 40px);
-  box-shadow: 0px 0px 13px rgba(235, 80, 60, 0.37);
+  box-shadow: 0px 0px 13px rgba(100, 100, 100, 0.37);
   z-index: 1;
-}
-main #input #button_convert:focus {
-  outline: 2px solid #282836;
 }
 main #input #button_convert::after {
   font-family: "Material Symbols Rounded";
@@ -147,6 +143,7 @@ main #input #button_convert::after {
   color: #fff;
 }
 main #input #button_convert:hover {
+  background-color: #EB503C;
   box-shadow: 0px 0px 14px rgba(164, 58, 44, 0.74);
 }
 main #output {
@@ -158,10 +155,10 @@ main #output #area_output {
   width: 100%;
   padding: 32px;
   background-color: #FFF;
-  border: 2px solid #DCDCDC;
+  border: 2px solid #D6D3D0;
   box-shadow: 0px 0px 13px rgba(117, 117, 117, 0.37);
   border-radius: 8px;
-  color: #72727A;
+  color: #282836;
   resize: none;
 }
 main #output #area_output:focus {
@@ -213,7 +210,7 @@ main #output #message {
   padding: 12px 40px;
   color: #282836;
   min-width: 160px;
-  max-width: 80%;
+  max-width: 90%;
   position: absolute;
   top: 50%;
   left: 50%;

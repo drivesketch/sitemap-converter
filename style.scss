@@ -1,5 +1,9 @@
 $aco_orange: #EB503C;
 $aco_black: #282836;
+$border: #D6D3D0;
+$white: #FFFFFF;
+$background: #F8F7F6;
+$gray: #706D65;
 *, *:before, *:after {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -7,20 +11,20 @@ $aco_black: #282836;
     line-height: 1.6;
     font-size: 16px;
 }
-button:focus {
-    outline: 2px solid $aco_orange;
-}
+
 .hidden {
     display: none;
 }
 body {
-    font-family: "SF Pro";
     padding: 0;
     margin: 0;
 }
 button {
     &:hover {
         cursor: pointer;
+    }
+    &:focus {
+        outline: 2px solid $aco_orange;
     }
 }
 header, main, footer {
@@ -33,7 +37,7 @@ header, main, footer {
 }
 header {
     padding: 24px 0;
-    border-bottom: 1px solid #DCDCDC;
+    border-bottom: 1px solid $border;
     h1 {
         font-size: 24px;
         font-weight: bold;
@@ -60,7 +64,7 @@ main{
         padding: 32px 0;
         box-shadow: 0 0 13px 0 rgba(117,117,117,.37);
         border-radius: 8px;
-        background-color: #F4F4F4;
+        background-color: $background;
         // flex: 1;
         position: relative;
         display: flex;
@@ -72,7 +76,7 @@ main{
             border: 2px solid $aco_orange;
         }
         div {
-            color: #706D65;
+            color: $gray;
             text-align: center;
         }
         #filename_wrapper {
@@ -85,10 +89,9 @@ main{
                 border: 1px solid #D6D3D0;
                 color: #23221E;
                 font-size: 16px;
-                font-weight: bold;
-                background-color: #fff;
+                font-weight: 600;
+                background-color: $white;
                 border-radius: 4px;
-                // line-height: 24px;
                 padding: 8px 16px;
                 display: flex;
                 flex-direction: row;
@@ -112,17 +115,15 @@ main{
             }
             &_clear_input {
                 border: 0;
+                border-radius: 4px;
                 background-color: rgba(255, 255, 255, 0);
-                // display: flex;
-                // justify-content: center;
-                // align-items: center;
                 height: 25.6px;
                 &::after {
                     font-family: "Material Symbols Rounded";
                     content: "\e872";
                     font-size: 20px;
                     line-height: 25.6px; 
-                    color: #98989E;
+                    color: $aco_black;
                 }
                 &:hover::after {
                     color: #E6A8A0;
@@ -131,17 +132,17 @@ main{
             &_convert {
                 border: 0;
                 border-radius: 40px;
-                background-color: $aco_orange;
+                background-color: $gray;
                 width: 80px;
                 height: 80px;
                 position: absolute;
                 bottom: -60px;
                 left: calc(50% - 40px);
-                box-shadow: 0px 0px 13px rgba(235, 80, 60, 0.37);
+                box-shadow: 0px 0px 13px rgba(100, 100, 100, 0.37);
                 z-index: 1;
-                &:focus {
-                    outline: 2px solid $aco_black;
-                }
+                // &:focus {
+                //     outline: 2px solid $aco_black;
+                // }
                 &::after {
                     font-family: "Material Symbols Rounded";
                     content: "\ead0";
@@ -151,6 +152,7 @@ main{
                     color: #fff;
                 }
                 &:hover {
+                    background-color: $aco_orange;
                     box-shadow: 0px 0px 14px rgba(164, 58, 44, 0.74);
                 }      
             }
@@ -165,12 +167,11 @@ main{
             height: 100%;
             width: 100%;
             padding: 32px;
-            // background-color: #F4F4F4;
             background-color: #FFF;
-            border: 2px solid #DCDCDC;
+            border: 2px solid $border;
             box-shadow: 0px 0px 13px rgba(117, 117, 117, 0.37);
             border-radius: 8px;
-            color: #72727A;
+            color: $aco_black;
             resize: none;
             // overflow: hidden;
             &:focus {
@@ -222,7 +223,7 @@ main{
             padding: 12px 40px;
             color: $aco_black;
             min-width: 160px;
-            max-width: 80%;
+            max-width: 90%;
             position: absolute;
             top: 50%;
             left: 50%;
