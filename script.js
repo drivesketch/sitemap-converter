@@ -1,61 +1,96 @@
 'use strict'
 {
-const area_input = document.getElementById('area_input');
 const area_output = document.getElementById('area_output');
-// const button_clear_input = document.getElementById('button_clear_input');
+const button_clear_input = document.getElementById('button_clear_input');
 const button_clear_output = document.getElementById('button_clear_output');
 const button_convert = document.getElementById('button_convert');
 const button_copy = document.getElementById('button_copy');
 const output = document.getElementById('output');
 const input = document.getElementById('input');
 
-const button_input = document.getElementById('button_input');
-const button_input_0 = document.getElementById('button_input_0');
+const button_input_customized = document.getElementById('button_input_customized');
+const button_input_original = document.getElementById('button_input_original');
 
 const filename = document.getElementById('filename');
 
-button_input.addEventListener('click', () => {
-    button_input_0.click();
-});
+const showFilename = (files) => {
+    const file = files[0];
+    filename.textContent = file.name;
+    button_clear_input.classList.remove('hidden');
+}
+const removeFilename = () => {
+    filename.textContent = '';
+    button_clear_input.classList.add('hidden');
+}
 
-button_input_0.addEventListener('change', e => {
-    const files = e.target.files;
+const toggleFilename = (files) => {
     if (files.length > 0) {
-        const file = files[0];
-        filename.textContent = file.name;
+        showFilename(files);
     } else {
-        filename.textContent = '';
+        removeFilename();
     }
-    button_input.blur();
-});
+}
 
+const showMessage = (message) => {
+    const div_message = document.createElement('div');
+    div_message.id = 'message';
+    div_message.textContent = message;
+    output.appendChild(div_message);
+    setTimeout(() => {
+        div_message.remove();
+    }, 2000);
+}
+
+// Drag & Dropでファイル投入
 input.addEventListener('dragover', e => {
     e.preventDefault();
     input.classList.add('focus');
 });
 input.addEventListener('dragleave', e => {
     e.preventDefault();
-    console.log('dragleave!');
     input.classList.remove('focus');
 });
 input.addEventListener('drop', e => {
     e.preventDefault();
     const files = e.dataTransfer.files;
-    button_input_0.files = files;
-    if (files.length > 0) {
-        const file = files[0];
-        filename.textContent = file.name;
-    } else {
-        filename.textContent = '';
-    }
+    button_input_original.files = files;
+    toggleFilename(files);
     input.classList.remove('focus');
 });
 
+// ボタンからファイル投入
+button_input_customized.addEventListener('click', () => {
+    button_input_original.click();
+});
+button_input_original.addEventListener('change', e => {
+    const files = e.target.files;
+    toggleFilename(files);
+    button_input_customized.blur();
+});
+
+// ファイル削除
+button_clear_input.addEventListener('click', () => {
+    button_input_original.value = '';
+    removeFilename();
+})
+
 button_convert.addEventListener('click', () => {
-    const file = button_input_0.files[0];
+    const file = button_input_original.files[0];
+
+    // ファイルがない場合エラー
+    if (file === undefined){
+        showMessage('ファイルが選択されていません。');
+        return;
+    }
     const reader = new FileReader();
     reader.onload =  () => {
         const content = reader.result.trim();
+
+        // 想定したCSVファイル以外が投入された場合、エラーにする
+        if( content.indexOf('"url","Title"')!== 0){
+            showMessage('Integrity Plusから出力したCSVファイルではないため、処理できません。');
+            return;
+        } 
 
         // 1行ずつ配列に格納する
         const array_byLine = content.split('\n'); 
@@ -111,6 +146,7 @@ button_convert.addEventListener('click', () => {
             text_output += `\n${tabs_before}${array_title[i]}${tabs_after}${array_url[i]}`;
         }
         area_output.value = text_output;
+        
     }
     reader.readAsText(file, 'UTF-8');
 });
@@ -119,15 +155,10 @@ button_clear_output.addEventListener('click', () => {
     area_output.value = '';
 });
 
+
 button_copy.addEventListener('click', () => {
     navigator.clipboard.writeText(area_output.value);
-    const div_message = document.createElement('div');
-    div_message.id = 'message';
-    div_message.textContent = 'Copied!';
-    output.appendChild(div_message);
-    setTimeout(() => {
-        div_message.remove();
-    }, 1000);
+    showMessage('コピーしました');
 });
 
 }//use strict

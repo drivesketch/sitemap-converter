@@ -5,18 +5,20 @@
   font-size: 16px;
 }
 
-button:focus {
-  outline: 2px solid #EB503C;
+.hidden {
+  display: none;
 }
 
 body {
-  font-family: "SF Pro";
   padding: 0;
   margin: 0;
 }
 
 button:hover {
   cursor: pointer;
+}
+button:focus {
+  outline: 2px solid #EB503C;
 }
 
 header, main, footer {
@@ -25,13 +27,13 @@ header, main, footer {
 }
 
 .contentsWapper {
-  max-width: 1280px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 header {
   padding: 24px 0;
-  border-bottom: 1px solid #DCDCDC;
+  border-bottom: 1px solid #D6D3D0;
 }
 header h1 {
   font-size: 24px;
@@ -43,21 +45,22 @@ header h1 {
 }
 
 main {
-  padding: 80px 0;
-  min-height: calc(100vh - 177px);
+  padding: 32px 0;
+  min-height: calc(100vh - 168px);
 }
 main .contentsWapper {
   margin: 0px auto;
   height: 100%;
   display: flex;
+  flex-direction: column;
   gap: 40px;
 }
 main #input {
-  height: calc(100vh - 400px);
+  height: auto;
+  padding: 32px 0;
   box-shadow: 0 0 13px 0 rgba(117, 117, 117, 0.37);
   border-radius: 8px;
-  background-color: #F4F4F4;
-  flex: 1;
+  background-color: #F8F7F6;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -72,12 +75,17 @@ main #input div {
   color: #706D65;
   text-align: center;
 }
-main #input #button_input {
+main #input #filename_wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+main #input #button_input_customized {
   border: 1px solid #D6D3D0;
   color: #23221E;
   font-size: 16px;
-  font-weight: bold;
-  background-color: #fff;
+  font-weight: 600;
+  background-color: #FFFFFF;
   border-radius: 4px;
   padding: 8px 16px;
   display: flex;
@@ -86,58 +94,71 @@ main #input #button_input {
   justify-content: center;
   align-items: center;
 }
-main #input #button_input:hover {
+main #input #button_input_customized:hover {
   color: #EB503C;
 }
-main #input #button_input::before {
+main #input #button_input_customized::before {
   font-family: "Material Symbols Rounded";
   content: "\e2c8";
   font-size: 16px;
   line-height: 24px;
 }
-main #input #button_input_0 {
+main #input #button_input_original {
   display: none;
+}
+main #input #button_clear_input {
+  border: 0;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0);
+  height: 25.6px;
+}
+main #input #button_clear_input::after {
+  font-family: "Material Symbols Rounded";
+  content: "\e872";
+  font-size: 20px;
+  line-height: 25.6px;
+  color: #282836;
+}
+main #input #button_clear_input:hover::after {
+  color: #E6A8A0;
 }
 main #input #button_convert {
   border: 0;
   border-radius: 40px;
-  background-color: #EB503C;
+  background-color: #706D65;
   width: 80px;
   height: 80px;
   position: absolute;
-  right: -60px;
-  top: calc(50% - 40px);
-  box-shadow: 0px 0px 13px rgba(235, 80, 60, 0.37);
+  bottom: -60px;
+  left: calc(50% - 40px);
+  box-shadow: 0px 0px 13px rgba(100, 100, 100, 0.37);
   z-index: 1;
-}
-main #input #button_convert:focus {
-  outline: 2px solid #282836;
 }
 main #input #button_convert::after {
   font-family: "Material Symbols Rounded";
-  content: "\e5e1";
+  content: "\ead0";
   font-size: 40px;
   line-height: 80px;
   position: relative;
-  left: 3px;
   color: #fff;
 }
 main #input #button_convert:hover {
+  background-color: #EB503C;
   box-shadow: 0px 0px 14px rgba(164, 58, 44, 0.74);
 }
 main #output {
-  flex: 1;
   position: relative;
+  height: 400px;
 }
 main #output #area_output {
   height: 100%;
   width: 100%;
-  padding: 16px 24px;
+  padding: 32px;
   background-color: #FFF;
-  border: 2px solid #DCDCDC;
+  border: 2px solid #D6D3D0;
   box-shadow: 0px 0px 13px rgba(117, 117, 117, 0.37);
   border-radius: 8px;
-  color: #72727A;
+  color: #282836;
   resize: none;
 }
 main #output #area_output:focus {
@@ -188,10 +209,12 @@ main #output #button_copy:hover {
 main #output #message {
   padding: 12px 40px;
   color: #282836;
-  width: 160px;
+  min-width: 160px;
+  max-width: 90%;
   position: absolute;
-  bottom: 24px;
-  left: calc(50% - 80px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #FDFDFD;
   box-shadow: 0px 0px 13px rgba(117, 117, 117, 0.37);
   border-radius: 8px;
@@ -199,12 +222,13 @@ main #output #message {
 }
 
 footer {
-  padding: 48px 0;
+  padding: 32px 0;
+  height: 96px;
   background-color: #282836;
 }
 footer .contentsWapper {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   gap: 16px;
 }
@@ -215,8 +239,8 @@ footer a:hover {
   opacity: 0.6;
 }
 footer .footer_credit {
-  text-transform: uppercase;
   color: #FDFDFD;
   opacity: 0.8;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 32px;
 }/*# sourceMappingURL=style.css.map */

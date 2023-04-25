@@ -16,26 +16,24 @@
 <main>
   <div class="contentsWapper">
     <div id="input">
-      <!-- <textarea id="area_input" placeholder="Paste here the CSV exported from Integrity Plus." autofocus></textarea> -->
-      <div>Drag & drop the CSV file here<br>or</div>
-      <button aria-label="Input File" id="button_input">Select file</button>
-      <div id="filename"></div>
-      <input type="file" id="button_input_0" accept=".csv">
-      <!-- <button aria-label="Clear" id="button_clear_input"></button> -->
-      <button aria-label="Convert" id="button_convert"></button>
+      <div>ここにドラッグ＆ドロップ<br>または</div>
+      <button aria-label="Input File" id="button_input_customized">ファイルを選択</button>
+      <div id="filename_wrapper"><span id="filename"></span><button aria-label="Clear" id="button_clear_input" class="hidden"></button></div>
+      <input type="file" id="button_input_original" accept=".csv">
+      <button aria-label="変換" id="button_convert"></button>
     </div>
     <div id="output">
-      <textarea id="area_output" readonly></textarea>
-      <button aria-label="Clear" id="button_clear_output"></button>
-      <button aria-label="Copy" id="button_copy"></button>
+      <textarea id="area_output"></textarea>
+      <button aria-label="すべて削除" id="button_clear_output"></button>
+      <button aria-label="コピー" id="button_copy"></button>
       <!-- <div id="message">Copied!</div> -->
     </div>
   </div>
 </main>
 <footer>
   <div class="contentsWapper">
-    <a href="https://aco-tokyo.com/" target="_blank"><img class="footer_logo" src="aco_logo_white.svg" alt="A.C.O."></a>
-    <span class="footer_credit">Design Consulting Studio 東京</span>
+    <!-- <a href="https://aco-tokyo.com/" target="_blank"><img class="footer_logo" src="aco_logo_white.svg" alt="A.C.O."></a> -->
+    <span class="footer_credit">@drivesketch</span>
   </div>
 </footer>
 <script src="script.js"></script>
